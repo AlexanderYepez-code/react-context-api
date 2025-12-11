@@ -1,6 +1,9 @@
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { BudgetContext } from "../context/BudgetContest"
 
 export default function Header() {
+    const {budgetMode, setBudgetMode} = useContext(BudgetContext)
     const navLinks = [
         {
             title: "Homepage",
@@ -32,6 +35,9 @@ export default function Header() {
                     ))}
                 </ul>
             </div>
+            <button onClick={()=>{ setBudgetMode(prev => !prev)}}>
+                {budgetMode ? "Attiva Modalita Bdget": "Disattiva Modalita Budget"}
+            </button>
         </header>
     )
 }
