@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import axios from "axios";
+import { BudgetContext } from "../context/BudgetContest";
 
 export default function Prodotti() {
+    const {budgetMode} = useContext(BudgetContext);
 
     const [prodotti, setprodotti] = useState([]);
     useEffect(() => {
@@ -13,10 +15,12 @@ export default function Prodotti() {
             })
     }, [])
 
+    const filtroPerPrezzo = budgetMode ? prodotti.filter((product)=> product.price <= 30) : prodotti
+
     return (
         <>
             <section className="flex container jc-space-between">
-                {prodotti.map((product) => (
+                {filtroPerPrezzo.map((product) => (
 
                     
                         <div className="card " key={product.id}>
