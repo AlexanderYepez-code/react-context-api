@@ -8,6 +8,7 @@ import ChiSiamo from './pages/ChiSiamo'
 import Prodotti from './pages/Prodotti'
 import NotFound from './pages/NotFound'
 import SingoloProdotto from './pages/SingoloProdotto'
+import { BudgetProvider } from './context/BudgetContest'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,18 +17,20 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path='/' element={<Homepage/>}/>
-            <Route path='/chi-siamo' element={<ChiSiamo/>}/>
-            <Route path='/prodotti' element={<Prodotti/>}/>
-            <Route path='/prodotti/:samuel' element={<SingoloProdotto/>}/>
-            <Route path='*' element={<NotFound/>}/>
+      <BudgetProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path='/' element={<Homepage />} />
+              <Route path='/chi-siamo' element={<ChiSiamo />} />
+              <Route path='/prodotti' element={<Prodotti />} />
+              <Route path='/prodotti/:samuel' element={<SingoloProdotto />} />
+              <Route path='*' element={<NotFound />} />
 
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </BudgetProvider>
 
     </>
   )
